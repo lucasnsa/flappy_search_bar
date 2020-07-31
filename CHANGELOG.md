@@ -14,7 +14,6 @@ Finally, giving a SearchBarStyle, you will be able to change the SearchBar's sty
 
 * Fixing bug on hot reload and on Controller state
 
-
 ## [1.2.0] - 26/07/2019
 
 * Future are now cancelled if another request is made and prev was not completed yet
@@ -31,7 +30,7 @@ Finally, giving a SearchBarStyle, you will be able to change the SearchBar's sty
 ## [1.4.0] - 04/10/2019
 
 * Add possibility to display items in a Grid
-* Possibility to customize the space taken by each individual tile 
+* Possibility to customize the space taken by each individual tile
 
 ## [1.4.1] - 04/10/2019
 
@@ -52,3 +51,7 @@ Finally, giving a SearchBarStyle, you will be able to change the SearchBar's sty
 ## [1.7.2] - 24/01/2020
 
 * Change cancellation widget in order to take a `Widget` instead of just a `Text` to make it more customizable
+
+## [1.7.3] - 30/07/2020
+
+* Add  `Leading Widget`

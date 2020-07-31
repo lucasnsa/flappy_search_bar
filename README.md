@@ -1,6 +1,7 @@
 # flappy_search_bar
 
 A SearchBar widget handling most of search cases.
+This fork includes leading widget (A widget to display before the searchfield)
 
 ## Usage
 
@@ -22,6 +23,12 @@ To use this plugin, add flappy_search_bar as a dependency in your pubspec.yaml f
           placeHolder: Text("placeholder"),
           cancellationWidget: Text("Cancel"),
           emptyWidget: Text("empty"),
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                // Do something
+              },
+            ),
           indexedScaledTileBuilder: (int index) => ScaledTile.count(1, index.isEven ? 2 : 1),
           header: Row(
             children: <Widget>[
@@ -99,6 +106,7 @@ If you don't use an instance of SearchBarController, you can keep everything in 
 | onError  |  Function(Error error) | Callback called when an error occur runnning Future | no| null |
 | debounceDuration  | Duration | Debounce's duration | no| Duration(milliseconds: 500) |
 | loader  | Widget | Widget that appears when Future is running | no| CircularProgressIndicator() |
+| leading  | Widget | Widget that appears leading of the SearchBar | no| SizedBox.shrink() |
 | emptyWidget  | Widget | Widget that appears when Future is returning an empty list | no| SizedBox.shrink() |
 | icon  | Widget | Widget that appears on left of the SearchBar | no| Icon(Icons.search) |
 | hintText  | String | Hint Text | no| "" |
