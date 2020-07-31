@@ -31,7 +31,8 @@ class SearchBarController<T> {
   CancelableOperation _cancelableOperation;
   int minimumChars;
 
-  void setTextController(TextEditingController _searchQueryController, minimunChars) {
+  void setTextController(
+      TextEditingController _searchQueryController, minimunChars) {
     this._searchQueryController = _searchQueryController;
     this.minimumChars = minimunChars;
   }
@@ -148,6 +149,9 @@ class SearchBar<T> extends StatefulWidget {
   /// Cooldown between each call to avoid too many
   final Duration debounceDuration;
 
+  /// Widget shown for leading
+  final Widget leading;
+
   /// Widget to show when loading
   final Widget loader;
 
@@ -222,6 +226,7 @@ class SearchBar<T> extends StatefulWidget {
     this.searchBarController,
     this.minimumChars = 3,
     this.debounceDuration = const Duration(milliseconds: 500),
+    this.leading,
     this.loader = const Center(child: CircularProgressIndicator()),
     this.onError,
     this.emptyWidget = const SizedBox.shrink(),
@@ -268,7 +273,8 @@ class _SearchBarState<T> extends State<SearchBar<T>>
     searchBarController =
         widget.searchBarController ?? SearchBarController<T>();
     searchBarController.setListener(this);
-    searchBarController.setTextController(_searchQueryController, widget.minimumChars);
+    searchBarController.setTextController(
+        _searchQueryController, widget.minimumChars);
   }
 
   @override
@@ -374,6 +380,15 @@ class _SearchBarState<T> extends State<SearchBar<T>>
   @override
   Widget build(BuildContext context) {
     final widthMax = MediaQuery.of(context).size.width;
+
+    Widget leading = widget.leading;
+    if (leading != null) {
+      leading = ConstrainedBox(
+        constraints: const BoxConstraints.tightFor(width: 80),
+        child: leading,
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -384,6 +399,7 @@ class _SearchBarState<T> extends State<SearchBar<T>>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
+                leading ?? SizedBox.shrink(),
                 Flexible(
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 200),
